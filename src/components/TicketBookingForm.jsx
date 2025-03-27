@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import React from 'react';
+import './TicketBookingForm.css';
 
 const TicketBookingForm = () => {
   const [name, setName] = useState('');
@@ -38,59 +39,48 @@ const TicketBookingForm = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Ticket Booking Form</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={setName}
-      />
-      {errors.name && <Text style={styles.error}>{errors.name}</Text>}
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
-      {errors.email && <Text style={styles.error}>{errors.email}</Text>}
-      <TextInput
-        style={styles.input}
-        placeholder="Phone Number"
-        value={phone}
-        onChangeText={setPhone}
-        keyboardType="phone-pad"
-      />
-      {errors.phone && <Text style={styles.error}>{errors.phone}</Text>}
-      <TextInput
-        style={styles.input}
-        placeholder="Number of Tickets"
-        value={tickets}
-        onChangeText={setTickets}
-        keyboardType="numeric"
-      />
-      {errors.tickets && <Text style={styles.error}>{errors.tickets}</Text>}
-      <Button title="Submit" onPress={handleSubmit} />
-    </View>
+<div className="container">
+  <h2>Ticket Booking Form</h2>
+  <label>
+    Name
+    <input
+      type="text"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+  </label>
+  {errors.name && <span className="error">{errors.name}</span>}
+  <label>
+    Email
+    <input
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+    />
+  </label>
+  {errors.email && <span className="error">{errors.email}</span>}
+  <label>
+    Phone Number
+    <input
+      type="tel"
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+    />
+  </label>
+  {errors.phone && <span className="error">{errors.phone}</span>}
+  <label>
+    Number of Tickets
+    <input
+      type="number"
+      value={tickets}
+      onChange={(e) => setTickets(e.target.value)}
+    />
+  </label>
+  {errors.tickets && <span className="error">{errors.tickets}</span>}
+  <button onClick={handleSubmit}>Submit</button>
+</div>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingLeft: 8,
-  },
-  error: {
-    color: 'red',
-    marginBottom: 10,
-  },
-});
 
 export default TicketBookingForm;
